@@ -6,39 +6,39 @@
 
 import '@stencil/core';
 
-import '@cuuats/webmapgl';
-import '@ionic/core';
 import 'ionicons';
+import '@ionic/core';
+import '@cuuats/webmapgl';
 
 
 export namespace Components {
 
-  interface AppRoot {}
-  interface AppRootAttributes extends StencilHTMLAttributes {}
+  interface SntApp {}
+  interface SntAppAttributes extends StencilHTMLAttributes {}
 }
 
 declare global {
   interface StencilElementInterfaces {
-    'AppRoot': Components.AppRoot;
+    'SntApp': Components.SntApp;
   }
 
   interface StencilIntrinsicElements {
-    'app-root': Components.AppRootAttributes;
+    'snt-app': Components.SntAppAttributes;
   }
 
 
-  interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {}
-  var HTMLAppRootElement: {
-    prototype: HTMLAppRootElement;
-    new (): HTMLAppRootElement;
+  interface HTMLSntAppElement extends Components.SntApp, HTMLStencilElement {}
+  var HTMLSntAppElement: {
+    prototype: HTMLSntAppElement;
+    new (): HTMLSntAppElement;
   };
 
   interface HTMLElementTagNameMap {
-    'app-root': HTMLAppRootElement
+    'snt-app': HTMLSntAppElement
   }
 
   interface ElementTagNameMap {
-    'app-root': HTMLAppRootElement;
+    'snt-app': HTMLSntAppElement;
   }
 
 

@@ -1,8 +1,9 @@
-# Web Map GL App Starter
+# Sustainable Neighborhoods Web Map
 
-A starter Stencil application using Ionic and
+Sustainable Neighborhoods Web Map using
 [Web Map GL](https://github.com/CUUATS/webmapgl).
 
 ## License
-Web Map GL App Starter is available under the terms of the [BSD 3-clause
-license](https://github.com/CUUATS/webmapgl-app-starter/blob/master/LICENSE.md).
+Sustainable Neighborhoods Web Map is available under the terms of the
+[BSD 3-clause
+license](https://github.com/CUUATS/snt-map/blob/master/LICENSE.md).

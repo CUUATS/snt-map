@@ -1,7 +1,7 @@
 import { TestWindow } from '@stencil/core/testing';
 import { AppRoot } from './root';
 
-describe('app-root', () => {
+describe('snt-app', () => {
   it('should build', () => {
     expect(new AppRoot()).toBeTruthy();
   });

@@ -1,7 +1,7 @@
 import { sass } from '@stencil/sass';
 
 export const config = {
-  namespace: 'app',
+  namespace: 'snt',
   copy: [
     {
       src: 'public'
@@ -10,13 +10,13 @@ export const config = {
   outputTargets: [
     {
       type: 'www',
-      baseUrl: '/app',
+      baseUrl: '/snt',
       serviceWorker: null
     }
   ],
   plugins: [
     sass()
   ],
-  globalScript: 'src/global/app.ts',
-  globalStyle: 'src/global/app.css'
+  globalScript: 'src/global/snt.ts',
+  globalStyle: 'src/global/snt.css'
 };

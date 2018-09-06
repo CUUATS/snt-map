@@ -1,8 +1,8 @@
 {
-  "name": "@cuuats/webmapgl-app-starter",
+  "name": "@cuuats/snt-map",
   "private": true,
   "version": "0.0.1",
-  "description": "Web Map GL App Starter",
+  "description": "Sustainable Neighborhoods",
   "scripts": {
     "build": "npx stencil build",
     "start": "npx stencil build --dev --watch --serve",
@@ -21,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CUUATS/webmapgl-app-starter.git"
+    "url": "git+https://github.com/CUUATS/snt-map.git"
   },
   "author": "CUUATS",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/CUUATS/webmapgl-app-starter"
+    "url": "https://github.com/CUUATS/snt-map"
   },
-  "homepage": "https://github.com/CUUATS/webmapgl-app-starter",
+  "homepage": "https://github.com/CUUATS/snt-map",
   "jest": {
     "transform": {
       "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"

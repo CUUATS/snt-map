@@ -3,7 +3,7 @@
   "sources": {
     "data": {
       "type": "geojson",
-      "data": "/app/public/data.geojson"
+      "data": "/snt/public/data.geojson"
     }
   },
   "layers": [
