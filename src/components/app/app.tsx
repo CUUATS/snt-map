@@ -17,6 +17,7 @@ export class App {
           <gl-style url="https://maps.cuuats.org/basemaps/basic/style.json"
             basemap={true} name="Basic" enabled={true}></gl-style>
         </gl-map>
+        <snt-toggle-list slot="menu"></snt-toggle-list>
       </gl-app>
     );
   }

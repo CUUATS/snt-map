@@ -6,24 +6,38 @@
 
 import '@stencil/core';
 
-import 'ionicons';
-import '@ionic/core';
 import '@cuuats/webmapgl';
+import '@ionic/core';
+import 'ionicons';
 
 
 export namespace Components {
 
   interface SntApp {}
   interface SntAppAttributes extends StencilHTMLAttributes {}
+
+  interface SntModeToggle {
+    'label': string;
+  }
+  interface SntModeToggleAttributes extends StencilHTMLAttributes {
+    'label'?: string;
+  }
+
+  interface SntToggleList {}
+  interface SntToggleListAttributes extends StencilHTMLAttributes {}
 }
 
 declare global {
   interface StencilElementInterfaces {
     'SntApp': Components.SntApp;
+    'SntModeToggle': Components.SntModeToggle;
+    'SntToggleList': Components.SntToggleList;
   }
 
   interface StencilIntrinsicElements {
     'snt-app': Components.SntAppAttributes;
+    'snt-mode-toggle': Components.SntModeToggleAttributes;
+    'snt-toggle-list': Components.SntToggleListAttributes;
   }
 
 
@@ -33,12 +47,28 @@ declare global {
     new (): HTMLSntAppElement;
   };
 
+  interface HTMLSntModeToggleElement extends Components.SntModeToggle, HTMLStencilElement {}
+  var HTMLSntModeToggleElement: {
+    prototype: HTMLSntModeToggleElement;
+    new (): HTMLSntModeToggleElement;
+  };
+
+  interface HTMLSntToggleListElement extends Components.SntToggleList, HTMLStencilElement {}
+  var HTMLSntToggleListElement: {
+    prototype: HTMLSntToggleListElement;
+    new (): HTMLSntToggleListElement;
+  };
+
   interface HTMLElementTagNameMap {
     'snt-app': HTMLSntAppElement
+    'snt-mode-toggle': HTMLSntModeToggleElement
+    'snt-toggle-list': HTMLSntToggleListElement
   }
 
   interface ElementTagNameMap {
     'snt-app': HTMLSntAppElement;
+    'snt-mode-toggle': HTMLSntModeToggleElement;
+    'snt-toggle-list': HTMLSntToggleListElement;
   }
 
 

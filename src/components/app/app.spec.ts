@@ -1,18 +1,18 @@
 import { TestWindow } from '@stencil/core/testing';
-import { AppRoot } from './root';
+import { App } from './app';
 
 describe('snt-app', () => {
   it('should build', () => {
-    expect(new AppRoot()).toBeTruthy();
+    expect(new App()).toBeTruthy();
   });
 
   describe('rendering', () => {
-    let element: HTMLAppRootElement;
+    let element: HTMLSntAppElement;
     let testWindow: TestWindow;
     beforeEach(async () => {
       testWindow = new TestWindow();
       element = await testWindow.load({
-        components: [AppRoot],
+        components: [App],
         html: '<app-root></app-root>'
       });
     });
