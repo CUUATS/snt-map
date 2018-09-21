@@ -1,14 +1,24 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop } from '@stencil/core';
 
 
 @Component({
   tag: 'snt-toggle'
 })
 export class Toggle {
-  @Prop() attribute: string;
+  @Prop() value: string;
   @Prop() icon: string;
   @Prop() label: string;
   @Prop() type: 'mode' | 'destination' = 'destination';
+
+  @Event() sntToggleChange: EventEmitter;
+
+  changeHandler(e: CustomEvent) {
+    this.sntToggleChange.emit({
+      checked: e.detail.checked,
+      type: this.type,
+      value: this.value
+    });
+  }
 
   render() {
     return (
@@ -16,8 +26,9 @@ export class Toggle {
         { (this.icon) ?
           <ion-icon name={this.icon} slot="start"></ion-icon> : null }
         <ion-label>{this.label}</ion-label>
-        <ion-toggle slot="end" value={this.attribute} checked
-          color={(this.type == 'mode') ? 'primary' : 'secondary'}></ion-toggle>
+        <ion-toggle slot="end" value={this.value} checked
+          color={(this.type == 'mode') ? 'primary' : 'secondary'}
+          onIonChange={(e) => this.changeHandler(e)}></ion-toggle>
       </ion-item>
     );
   }

@@ -17,16 +17,17 @@ export namespace Components {
   interface SntAppAttributes extends StencilHTMLAttributes {}
 
   interface SntToggle {
-    'attribute': string;
     'icon': string;
     'label': string;
     'type': 'mode' | 'destination';
+    'value': string;
   }
   interface SntToggleAttributes extends StencilHTMLAttributes {
-    'attribute'?: string;
     'icon'?: string;
     'label'?: string;
+    'onSntToggleChange'?: (event: CustomEvent) => void;
     'type'?: 'mode' | 'destination';
+    'value'?: string;
   }
 
   interface SntToggles {}

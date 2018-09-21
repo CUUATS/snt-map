@@ -1,4 +1,4 @@
-import { Component } from '@stencil/core';
+import { Component, Listen } from '@stencil/core';
 import { _t } from '../../i18n/i18n';
 
 
@@ -22,11 +22,27 @@ export class App {
     ['vehicle', 'car', true]
   ];
 
+  @Listen('sntToggleChange')
+  togglechangeHandler(e: CustomEvent) {
+    let items = (e.detail.type === 'mode') ? this.modes : this.destinations;
+    for (let item of items) {
+      if (item[0] === e.detail.value) {
+        item[2] = e.detail.checked;
+        break;
+      }
+    }
+    this.updateMapStyle();
+  }
+
+  updateMapStyle() {
+    // TODO: Update the map style.
+  }
+
   getDestinationToggles() {
     return this.destinations.map(([mode, icon]) =>
       <snt-toggle slot="destinations" type="destination"
         label={_t(`snt.app.destinations.${mode}`)}
-        icon={icon} attribute={mode}>
+        icon={icon} value={mode}>
       </snt-toggle>);
   }
 
@@ -34,7 +50,7 @@ export class App {
     return this.modes.map(([mode, icon]) =>
       <snt-toggle slot="modes" type="mode"
         label={_t(`snt.app.modes.${mode}`)}
-        icon={icon} attribute={mode}>
+        icon={icon} value={mode}>
       </snt-toggle>);
   }
 
