@@ -7,6 +7,7 @@ import { _t } from '../../i18n/i18n';
   styleUrl: 'app.scss'
 })
 export class App {
+  map?: HTMLGlMapElement;
   destinations: [string, string, boolean][] = [
     ['grocery', 'cart', true],
     ['job', 'briefcase', true],
@@ -22,6 +23,10 @@ export class App {
     ['vehicle', 'car', true]
   ];
 
+  componentDidLoad() {
+    this.updateMapStyle();
+  }
+
   @Listen('sntToggleChange')
   togglechangeHandler(e: CustomEvent) {
     let items = (e.detail.type === 'mode') ? this.modes : this.destinations;
@@ -34,8 +39,17 @@ export class App {
     this.updateMapStyle();
   }
 
-  updateMapStyle() {
-    // TODO: Update the map style.
+  async updateMapStyle() {
+    let sum : (string | string[])[] = ['+'];
+    this.modes.forEach(([mode, _icon, enabled]) => {
+      if (enabled) this.destinations.forEach(([_dest, _icon, enabled]) => {
+          // if (enabled) sum.push(['get', `${mode}_${dest}`]);
+          if (enabled) sum.push(['get', `${mode}`]);
+      });
+    });
+    let prop = await this.map.getPaintProperty('app:segment', 'line-color');
+    prop[2] = (sum.length < 2) ? ['literal', 0] : ['/', sum, sum.length - 1];
+    this.map.setPaintProperty('app:segment', 'line-color', prop);
   }
 
   getDestinationToggles() {
@@ -58,7 +72,7 @@ export class App {
     return (
       <gl-app label={_t('snt.app.title')} menuLabel={_t('snt.app.options')}>
         <gl-fullscreen slot="end-buttons"></gl-fullscreen>
-        <gl-map
+        <gl-map ref={(r) => this.map = r as HTMLGlMapElement}
             longitude={-88.228878} latitude={40.110319} zoom={12} maxzoom={22}>
           <gl-style url="/snt/public/style.json" id="app"></gl-style>
           <gl-style url="https://maps.cuuats.org/basemaps/basic/style.json"

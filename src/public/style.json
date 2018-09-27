@@ -1,14 +1,42 @@
 {
   "version": 8,
   "sources": {
-    "data": {
+    "segment": {
       "type": "geojson",
-      "data": "/snt/public/data.geojson"
+      "data": "/snt/public/segment.geojson"
+    },
+    "station": {
+      "type": "geojson",
+      "data": "/snt/public/station.geojson"
     }
   },
   "layers": [
     {
-      "id": "data",
+      "id": "segment",
+      "type": "line",
+      "source": "segment",
+      "minzoom": 0,
+      "maxzoom": 22,
+      "paint": {
+        "line-color": [
+          "interpolate",
+          ["linear"],
+          ["literal", 0],
+          0, "#f50814",
+          50, "#f5fa8a",
+          100, "#030bf2"
+        ],
+        "line-width": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          10, 1,
+          22, 5
+        ]
+      }
+    },
+    {
+      "id": "station",
       "type": "circle",
       "source": "data",
       "minzoom": 0,
