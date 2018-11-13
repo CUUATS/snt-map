@@ -7,7 +7,7 @@ import { _t } from '../../i18n/i18n';
   styleUrl: 'app.scss'
 })
 export class App {
-  map?: HTMLGlMapElement;
+  style?: HTMLGlStyleElement;
   destinations: [string, string, boolean][] = [
     ['grocery', 'cart', true],
     ['job', 'briefcase', true],
@@ -39,7 +39,7 @@ export class App {
     this.updateMapStyle();
   }
 
-  async updateMapStyle() {
+  updateMapStyle() {
     let sum : (string | string[])[] = ['+'];
     this.modes.forEach(([mode, _icon, enabled]) => {
       if (enabled) this.destinations.forEach(([_dest, _icon, enabled]) => {
@@ -47,9 +47,16 @@ export class App {
           if (enabled) sum.push(['get', `${mode}`]);
       });
     });
-    let prop = await this.map.getPaintProperty('app:segment', 'line-color');
-    prop[2] = (sum.length < 2) ? ['literal', 0] : ['/', sum, sum.length - 1];
-    this.map.setPaintProperty('app:segment', 'line-color', prop);
+
+    let json = {...this.style.json};
+    for (let layer of json.layers) {
+      if (layer.id === 'segment') {
+        layer.paint['line-color'][2] = (sum.length < 2) ?
+          ['literal', 0] : ['/', sum, sum.length - 1];
+        this.style.json = json;
+        return;
+      }
+    }
   }
 
   getDestinationToggles() {
@@ -72,9 +79,10 @@ export class App {
     return (
       <gl-app label={_t('snt.app.title')} menuLabel={_t('snt.app.options')}>
         <gl-fullscreen slot="end-buttons"></gl-fullscreen>
-        <gl-map ref={(r) => this.map = r as HTMLGlMapElement}
+        <gl-map
             longitude={-88.228878} latitude={40.110319} zoom={12} maxzoom={22}>
-          <gl-style url="/snt/public/style.json" id="app"></gl-style>
+          <gl-style ref={(r: HTMLGlStyleElement) => this.style = r}
+            url="/snt/public/style.json" id="app"></gl-style>
           <gl-style url="https://maps.cuuats.org/basemaps/basic/style.json"
             basemap={true} enabled={true}></gl-style>
         </gl-map>
