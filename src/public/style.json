@@ -38,7 +38,7 @@
     {
       "id": "station",
       "type": "circle",
-      "source": "data",
+      "source": "station",
       "minzoom": 0,
       "maxzoom": 22,
       "paint": {
